@@ -1,0 +1,13 @@
+# 本地构建版本（不走 Docker Hub）
+services:
+  m3u8-dl:
+    build: .
+    container_name: m3u8-dl
+    ports:
+      - "8899:8899"
+    volumes:
+      - /vol1/downloads:/downloads
+    environment:
+      - TZ=Asia/Shanghai
+      - DOWNLOAD_DIR=/downloads
+    restart: unless-stopped

@@ -1,0 +1,15 @@
+# 从 Docker Hub 拉取
+# 本地构建: docker compose -f docker-compose.local.yml up -d --build
+services:
+  m3u8-dl:
+    image: bluefang/m3u8-dl:latest
+    container_name: m3u8-dl
+    ports:
+      - "8899:8899"
+    volumes:
+      # 改成你 NAS 上实际的下载目录
+      - /vol1/downloads:/downloads
+    environment:
+      - TZ=Asia/Shanghai
+      - DOWNLOAD_DIR=/downloads
+    restart: unless-stopped
